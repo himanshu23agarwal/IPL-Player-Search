@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IPL Player Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #667eea;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background: #667eea;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>IPL Player Search</h2>
+        <form action="/search" method="POST">
+            <label for="type">Search Type</label>
+            <select name="find_details" id="type" onchange="updatePlaceholder()">
+                <option value="">By Name</option>
+                <option value="ipl">By Country</option>
+                <option value="bid">By Bid Amount</option>
+            </select>
+            <label for="input">Enter Value</label>
+            <input type="text" name="find" id="input" placeholder="Enter player name" required>
+            <button type="submit">Search</button>
+        </form>
+        <div class="note">
+            Try searching by name, country, or minimum bid
+        </div>
+    </div>
+    <script>
+        function updatePlaceholder() {
+            const type = document.getElementById("type").value;
+            const input = document.getElementById("input");
+            if (type === "ipl") {
+                input.placeholder = "Enter country (e.g. India)";
+            } else if (type === "bid") {
+                input.placeholder = "Enter minimum bid amount";
+            } else {
+                input.placeholder = "Enter player name";
+            }
+        }
+    </script>
+</body>
+
+</html>
